@@ -4,3 +4,7 @@
 $ git remote add origin https://github.com/saltlight123/ogaehwal-ft_project1.git
 $ git remote -v
 $ git push -u origin main
+
+# 한 번 푸시해본 이후에는 그냥
+    $ git push
+만 해도 자동으로 수정사항이 원격 저장소에 연동됩니다.
