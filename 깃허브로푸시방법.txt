@@ -8,6 +8,7 @@ $ git push -u origin main
 # 한 번 푸시해본 이후에는 그냥
     $ git push
 만 해도 자동으로 수정사항이 원격 저장소에 연동됩니다.
+
 # 다음은 반대로 깃허브에서 파일을 직접 수정하고서 로컬 저장소 쪽으로 수정사항을 반영하려고 할 경우입니다.
 # 파일을 수정한 뒤, 본인 노트북의 VS code에서 git bash에
     $ git pull origin main
