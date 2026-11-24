@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>반도체 제품과 반도체 회사</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 50%,#312e81 100%);
+  color:#e2e8f0;padding:40px 20px;
+}
+.wrap{max-width:1000px;margin:0 auto;}
+
+.back{
+  display:inline-block;margin-bottom:30px;padding:10px 18px;
+  color:#fff;text-decoration:none;border-radius:12px;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  box-shadow:0 6px 18px rgba(59,130,246,.4);transition:.3s;
+}
+.back:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(59,130,246,.55);}
+
+h2{
+  font-size:2rem;margin-bottom:16px;
+  background:linear-gradient(90deg,#60a5fa,#22d3ee,#a78bfa);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+h3{
+  margin:30px 0 16px;font-size:1.3rem;color:#7dd3fc;
+  border-left:4px solid #38bdf8;padding-left:12px;
+}
+h4{margin-bottom:10px;color:#c4b5fd;font-size:1.05rem;}
+
+.intro{
+  padding:20px 24px;border-radius:18px;margin-bottom:24px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(148,163,184,.25);
+  backdrop-filter:blur(10px);line-height:1.8;color:#cbd5e1;
+}
+
+ul{padding-left:24px;}
+li{margin:10px 0;line-height:1.7;color:#cbd5e1;}
+li strong{color:#f1f5f9;}
+
+.company{
+  padding:18px 22px;border-radius:16px;margin-bottom:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(148,163,184,.22);
+  backdrop-filter:blur(10px);transition:.3s;line-height:1.7;color:#cbd5e1;
+}
+.company:hover{border-color:#a78bfa;box-shadow:0 10px 26px rgba(167,139,250,.3);}
+.company .tag{font-weight:700;color:#c4b5fd;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← 메인으로 돌아가기</a>
+
+  <h2>4. 반도체 제품과 반도체 회사</h2>
+
+  <h3>반도체 주요 제품</h3>
+  <h4>반도체란 무엇인가요?</h4>
+  <div class="intro">
+    반도체는 전기가 흐르기도 하고 막히기도 하는 물질입니다. 우리가 쓰는 스마트폰, 컴퓨터, 자동차, AI 서버에 모두 들어가며 현대 전자기기의 핵심 부품입니다.
+  </div>
+
+  <ul>
+    <li><strong>메모리 반도체</strong> : DRAM(휘발성 메모리), NAND 플래시(SSD), HMB(AI용 고대역 메모리)</li>
+    <li><strong>로직 반도체</strong> : CPU, GPU, 모바일 AP 프로세서</li>
+    <li><strong>센서 반도체</strong> : 카메라 CMOS 이미지 센서</li>
+    <li><strong>전력 반도체</strong> : 전기차, 충전기에 사용하는 IGBT</li>
+  </ul>
+
+  <h3>대표적인 글로벌 반도체 기업</h3>
+  <div class="company"><span class="tag">삼성전자</span> : DRAM, NAND, HMB, 모바일 칩. 세계적인 메모리 반도체 기업으로, 고성능 HMB는 AI 서버에 많이 사용됩니다.</div>
+  <div class="company"><span class="tag">SK하이닉스</span> : DRAM, HBM. HBM은 고대역폭 메모리로 그래픽카드와 AI 가속기에 핵심 부품입니다.</div>
+  <div class="company"><span class="tag">TSMC(대만반도체)</span> : 파운드리, 칩 위탁 생산. 애플, 엔비디아 등 많은 기업의 칩을 제작하는 세계 최대 파운드리입니다.</div>
+  <div class="company"><span class="tag">NVIDIA</span> : GPU, AI 칩. AI 학습과 그래픽 연산에 사용되는 GPU로 AI 산업에서 매우 중요합니다.</div>
+  <div class="company"><span class="tag">Intel</span> : PC용 CPU. 컴퓨터 중앙처리장치 CPU를 주로 생산하며 서버용 칩도 개발합니다.</div>
+</div>
+</body>
+</html>
