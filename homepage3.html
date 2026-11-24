@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>반도체 프로젝트</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 50%,#312e81 100%);
+  color:#e2e8f0;padding:40px 20px;
+}
+.hero{text-align:center;margin-bottom:30px;}
+.hero h1{
+  font-size:2.4rem;
+  background:linear-gradient(90deg,#60a5fa,#22d3ee,#a78bfa);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:10px;
+}
+.hero p{color:#94a3b8;letter-spacing:1px;}
+
+/* ===== 반도체 퍼즐 ===== */
+.puzzle-area{text-align:center;margin-bottom:40px;}
+.puzzle{
+  width:360px;height:360px;max-width:90%;margin:0 auto 20px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+  padding:6px;border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(148,163,184,.25);
+  backdrop-filter:blur(10px);
+}
+.tile{
+  border-radius:12px;cursor:pointer;position:relative;
+  background-size:300% 300%;
+  border:2px solid rgba(148,163,184,.3);
+  transition:.25s;
+}
+.tile:hover{transform:scale(1.04);border-color:#38bdf8;}
+.tile.selected{border:2px solid #fff;box-shadow:0 0 22px rgba(34,211,238,.8);}
+.tile .num{
+  position:absolute;top:6px;left:8px;font-size:.8rem;font-weight:700;
+  color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7);
+}
+.puzzle-msg{color:#7dd3fc;margin-bottom:16px;font-size:1.1rem;min-height:1.5em;}
+.btn{
+  padding:12px 26px;margin:0 8px;border:none;border-radius:12px;cursor:pointer;
+  color:#fff;font-size:1rem;font-weight:600;
+  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+  box-shadow:0 6px 18px rgba(59,130,246,.4);transition:.3s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(59,130,246,.55);}
+
+/* ===== 네비게이션 ===== */
+.nav{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;max-width:900px;margin:0 auto;
+}
+.nav a{
+  display:block;padding:22px 20px;border-radius:18px;text-decoration:none;color:#f1f5f9;
+  background:rgba(255,255,255,.08);border:1px solid rgba(148,163,184,.25);
+  backdrop-filter:blur(10px);transition:.3s;
+}
+.nav a:hover{transform:translateY(-6px);background:rgba(59,130,246,.25);border-color:#38bdf8;box-shadow:0 12px 30px rgba(56,189,248,.35);}
+.nav a .num{display:block;font-size:.85rem;color:#38bdf8;margin-bottom:6px;}
+.nav a .title{font-size:1.1rem;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>SEMICONDUCTOR PROJECT</h1>
+  <p>반도체 산업 조사 웹사이트</p>
+</div>
+
+<!-- 반도체 칩 이미지 퍼즐 -->
+<div class="puzzle-area">
+  <div class="puzzle" id="puzzle"></div>
+  <div class="puzzle-msg" id="msg"></div>
+  <button class="btn" onclick="shuffle()">퍼즐 섞기</button>
+  <button class="btn" onclick="reset()">원위치</button>
+</div>
+
+<!-- 네비게이션 -->
+<div class="nav">
+  <a href="product.html"><span class="num">PART 04</span><span class="title">반도체 제품과 반도체 회사</span></a>
+  <a href=""><span class="num">PART 01</span><span class="title">조원 1 주제</span></a>
+  <a href=""><span class="num">PART 02</span><span class="title">조원 2 주제</span></a>
+  <a href=""><span class="num">PART 03</span><span class="title">조원 3 주제</span></a>
+</div>
+
+<script>
+// 퍼즐에 사용할 반도체 칩 이미지 (같은 폴더에 chip.jpg 를 넣고 "chip.jpg" 로 바꿔도 됨)
+const IMG = "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80";
+
+let tiles = [0,1,2,3,4,5,6,7,8];
+let selected = null;
+const puzzle = document.getElementById('puzzle');
+const msg = document.getElementById('msg');
+
+function bgPos(origin){
+  const col = origin % 3;
+  const row = Math.floor(origin / 3);
+  return (col * 50) + "% " + (row * 50) + "%";
+}
+
+function render(){
+  puzzle.innerHTML = '';
+  tiles.forEach((origin, i) => {
+    const t = document.createElement('div');
+    t.className = 'tile' + (selected === i ? ' selected' : '');
+    t.style.backgroundImage = `url("${IMG}")`;
+    t.style.backgroundPosition = bgPos(origin);
+    t.innerHTML = `<span class="num">${origin + 1}</span>`;
+    t.onclick = () => pick(i);
+    puzzle.appendChild(t);
+  });
+  checkWin();
+}
+
+function pick(i){
+  if(selected === null){ selected = i; }
+  else if(selected === i){ selected = null; }
+  else{
+    [tiles[selected], tiles[i]] = [tiles[i], tiles[selected]];
+    selected = null;
+  }
+  render();
+}
+
+function checkWin(){
+  const win = tiles.every((n,i) => n === i);
+  msg.textContent = win ? '🎉 칩 이미지를 완성했습니다!' : '';
+}
+
+function shuffle(){
+  do{
+    for(let i = tiles.length-1; i>0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [tiles[i],tiles[j]] = [tiles[j],tiles[i]];
+    }
+  }while(tiles.every((n,i)=>n===i));
+  selected = null;
+  render();
+}
+
+function reset(){
+  tiles = [0,1,2,3,4,5,6,7,8];
+  selected = null;
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
